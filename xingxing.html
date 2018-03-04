@@ -1,0 +1,57 @@
+<html>
+<title>点星星</title>
+
+<head></head>
+<style>
+    .blinfalse {
+        height: 1em;
+        width: 1em;
+        border: #bd3800 1px solid;
+        display: inline-block;
+    }
+    
+    .blintrue {
+        height: 1em;
+        width: 1em;
+        border-color: #bd3800;
+        background-color: #bd3800;
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <div>
+        <div class="blinfalse" name="xinf"></div>
+        <div class="blinfalse" name="xinf"></div>
+        <div class="blinfalse" name="xinf"></div>
+        <div class="blinfalse" name="xinf"></div>
+        <div class="blinfalse" name="xinf"></div>
+    </div>
+    <div>
+        <div class="blinfalse" name="xinf2"></div>
+        <div class="blinfalse" name="xinf2"></div>
+        <div class="blinfalse" name="xinf2"></div>
+        <div class="blinfalse" name="xinf2"></div>
+        <div class="blinfalse" name="xinf2"></div>
+    </div>
+</body>
+<script>
+    function showIcon() {
+		if(arguments.length<=0)return;
+        let IcoArr = document.getElementsByName(arguments[0]);
+        for (let i = 0, len = IcoArr.length; i < len; i++) {
+            IcoArr[i].onmousedown = function() {
+                for (let d = 0, len = IcoArr.length; d < len; d++) {
+                    IcoArr[d].className = "blinfalse";
+                }
+                for (let j = 0, lens = i; j <= lens; j++) {
+                    IcoArr[j].className = "blintrue";
+                }
+            }
+        }
+    }
+    showIcon("xinf");
+    showIcon("xinf2");
+</script>
+
+</html>
