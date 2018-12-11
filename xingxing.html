@@ -9,7 +9,7 @@
         border: #bd3800 1px solid;
         display: inline-block;
     }
-    
+
     .blintrue {
         height: 1em;
         width: 1em;
@@ -20,7 +20,7 @@
 </style>
 
 <body>
-    <div>
+    <div id="xinf">
         <div class="blinfalse" name="xinf"></div>
         <div class="blinfalse" name="xinf"></div>
         <div class="blinfalse" name="xinf"></div>
@@ -36,22 +36,24 @@
     </div>
 </body>
 <script>
-    function showIcon() {
-		if(arguments.length<=0)return;
-        let IcoArr = document.getElementsByName(arguments[0]);
-        for (let i = 0, len = IcoArr.length; i < len; i++) {
-            IcoArr[i].onmousedown = function() {
-                for (let d = 0, len = IcoArr.length; d < len; d++) {
-                    IcoArr[d].className = "blinfalse";
+    let eleArr = Array.from(document.getElementsByName("xinf"));
+    let oldIndex = 0, checkOn = `blintrue`, checkOff = `blinfalse`;
+    eleArr.map((t, i) => {
+        t.addEventListener(`click`, e => {
+            let index = i;
+            eleArr.map(e => {
+                e.className = checkOff;
+                return e;
+            }).map((e, i) => {
+                if (i > index) return;
+                if (oldIndex == index) {
+                    return e.className = checkOff;
                 }
-                for (let j = 0, lens = i; j <= lens; j++) {
-                    IcoArr[j].className = "blintrue";
-                }
-            }
-        }
-    }
-    showIcon("xinf");
-    showIcon("xinf2");
+                e.className = checkOn;
+            })
+            oldIndex = !(oldIndex == index) ? index : -1;
+        });
+    })
 </script>
 
 </html>
